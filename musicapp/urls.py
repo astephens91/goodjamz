@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from musicapp.albums.models import Album
+from musicapp import views
+
+admin.site.register(Album)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index.as_view(), name='homepage')
 ]

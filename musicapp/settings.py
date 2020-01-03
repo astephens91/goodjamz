@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'musicapp',
-    'django_rest_framework'
 ]
 
 LOGIN_URL = '/login/'
