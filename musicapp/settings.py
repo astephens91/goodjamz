@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'musicapp',
-    'django_rest_framework'
+    'musicapp'
 ]
+
+AUTH_USER_MODEL = 'musicapp.CustomUser'
 
 LOGIN_URL = '/login/'
 
