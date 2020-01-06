@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'musicapp',
 ]
 
+AUTH_USER_MODEL = 'musicapp.CustomUser'
+
 LOGIN_URL = '/login/'
 
 MIDDLEWARE = [

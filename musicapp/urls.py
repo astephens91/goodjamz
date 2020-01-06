@@ -20,6 +20,10 @@ from musicapp import views
 
 admin.site.register(Album)
 
+from .jamusers import models
+
+admin.site.register(models.CustomUser)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index.as_view(), name='homepage')
