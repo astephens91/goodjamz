@@ -11,4 +11,4 @@ class index(View):
 
         albums = Album.objects.all()
 
-        return render(request, html, {'data': albums})
+        return render(request, html, {'albums': albums})
