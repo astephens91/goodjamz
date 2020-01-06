@@ -12,9 +12,8 @@ from .managers import CustomUserManager
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=False)
-    # https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/
-    # wishlist = models.ManyToManyField() ****Need Alec's Album model****
-    # rating = models.ManyToManyField() ****Need Alec's Album model****
+    wishlist = models.ManyToManyField('self', related_name='wishlist+',
+                                      symmetrical=False, blank=True)
     date_joined = models.DateTimeField(default=timezone.now())
 
     USERNAME_FIELD = 'email'

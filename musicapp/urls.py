@@ -14,17 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from musicapp.albums.models import Album
+from django.urls import include, path
 from musicapp import views
 
-admin.site.register(Album)
-
-from .jamusers import models
-
-admin.site.register(models.CustomUser)
+app_name = 'ratings'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index.as_view(), name='homepage')
+    path('', views.index.as_view(), name='homepage'),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
