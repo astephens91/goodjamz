@@ -30,6 +30,7 @@ class Album(models.Model):
     artwork = models.ImageField(upload_to='images/', null=True, blank=True)
     ratings = GenericRelation(Rating, related_query_name='albums')
     post_date = models.DateTimeField(default=datetime.datetime.now())
+    description = models.TextField(max_length=None, blank=False)
     # uploaded_by = models.ForeignKey()
 
     def __str__(self):
