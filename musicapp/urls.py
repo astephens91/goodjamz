@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from musicapp.albums.urls import urlpatterns as album_urls
+
 from musicapp import views
 
 app_name = 'ratings'
@@ -24,3 +26,6 @@ urlpatterns = [
     path('', views.index.as_view(), name='homepage'),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
+
+urlpatterns += album_urls
+
