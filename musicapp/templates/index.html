@@ -4,7 +4,7 @@
 
 {% for records in data %}
     <ul>
-        <li>{{ records.title }} by {{ records.artist }} </li>
+        <li><p>{{ records.title }} by {{ records.artist }}<p/> </li>
         <img src="{{ records.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
     </ul>
 
