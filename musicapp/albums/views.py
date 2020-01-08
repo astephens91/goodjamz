@@ -15,7 +15,7 @@ def album_artwork_view(request):
 
     else:
         form = AlbumForm()
-    return render(request, 'add_album_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form})
 
 
 def success(request):
