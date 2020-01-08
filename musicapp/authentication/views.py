@@ -47,12 +47,12 @@ class SignUpView(FormView):
     def form_valid(self,form):
         data = form.cleaned_data
         user = User.objects.create_user(
-            username=data['email'],
+            email=data['email'],
             password=data['password']
         )
         login(self.request, user)
         CustomUser.objects.create(
-            email=data['username'],
+            email=data['email'],
             user=user
         )
 

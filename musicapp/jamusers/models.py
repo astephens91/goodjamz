@@ -3,21 +3,13 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
 from .managers import CustomUserManager
 
 # https://testdriven.io/blog/django-custom-user-model/
 
-
-
-
-
-
-
-
-
-
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractUser):
     username = None
 
     email = models.EmailField(_('email address'), unique=True)
