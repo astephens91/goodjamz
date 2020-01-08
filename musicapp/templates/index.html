@@ -3,9 +3,9 @@
 <br><br>
 
 {% for records in data %}
-    <div>
-        <h1>{{ records.title }} by {{ records.artist }} </h1>
+    <ul>
+        <li>{{ records.title }} by {{ records.artist }} </li>
         <img src="{{ records.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
-    </div>
+    </ul>
 
 {% endfor %}
