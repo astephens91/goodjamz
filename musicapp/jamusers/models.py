@@ -9,7 +9,17 @@ from .managers import CustomUserManager
 # https://testdriven.io/blog/django-custom-user-model/
 
 
+
+
+
+
+
+
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    username = None
+
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=True)
     wishlist = models.ManyToManyField('self', related_name='wishlist+',
