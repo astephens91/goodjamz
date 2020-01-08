@@ -31,7 +31,7 @@ class Album(models.Model):
     artwork = models.ImageField(upload_to='images/', null=True, blank=True)
     post_date = models.DateTimeField(default=datetime.datetime.now())
     description = models.TextField(max_length=None, blank=False)
-    # uploaded_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='uploaded_by+')
+    uploaded_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='uploaded_by+', null=True)
 
     def __str__(self):
         return f'{self.title} by {self.artist} uploaded  by'
