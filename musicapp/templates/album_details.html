@@ -1,0 +1,10 @@
+{% for items in album %}
+    <div style="margin-bottom: 20px;">
+        <div>
+            <h5>{{items.title}}</h5>
+            <img src="{{ items.artwork.url }}" />
+            <p>Artist: {{items.artist}}</p>
+            <p>Genre: {{items.genre_choice}}</p>
+        </div>
+    </div>
+{% endfor %}
