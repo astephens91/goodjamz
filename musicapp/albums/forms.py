@@ -9,5 +9,5 @@ class AlbumForm(forms.ModelForm):
         fields = ['title',
                   'artist',
                   'artwork',
-                  'genre',
+                  'genre_choice',
                   'post_date']
