@@ -11,7 +11,7 @@ from .managers import CustomUserManager
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     wishlist = models.ManyToManyField('self', related_name='wishlist+',
                                       symmetrical=False, blank=True)
     date_joined = models.DateTimeField(default=timezone.now())
