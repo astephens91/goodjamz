@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index.as_view(), name='homepage'),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('album/<int:id>/', views.albumview.as_view(), name='album_details'),
+    path('userdetails/<int:id>/', views.userview.as_view(), name='user_details')
 ]
 
 urlpatterns += album_urls
