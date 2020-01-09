@@ -21,3 +21,10 @@ def album_artwork_view(request):
 
 def success(request):
     return HttpResponse('successfully uploaded image')
+
+
+def ratings(request):
+
+    rating = Album.objects.filter(ratings__isnull=False)
+
+    return render(request, {'rating': rating})
