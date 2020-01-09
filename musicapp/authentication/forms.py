@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from musicapp.jamusers.models import CustomUser
+# from musicapp.jamusers.models import CustomUser
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -12,6 +12,6 @@ class LoginForm(forms.Form):
 class SignupForm(UserCreationForm):
 
     class Meta:
-        model = CustomUser
-        fields = ('email',)
+        model = User
+        fields = ('email','password1','password2')
 

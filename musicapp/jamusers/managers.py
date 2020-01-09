@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # https://testdriven.io/blog/django-custom-user-model/
 
-
+# only need this for abstractbaseuser
 class CustomUserManager(BaseUserManager):
     """Changes username authentication to email"""
 
