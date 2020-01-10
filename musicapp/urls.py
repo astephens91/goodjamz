@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from musicapp.albums.urls import urlpatterns as album_urls
 from musicapp.authentication.urls import urlpatterns as auth_urls
+from musicapp.jamusers.urls import urlpatterns as user_urls
 
 from musicapp import views
 
@@ -32,4 +33,4 @@ urlpatterns = [
 
 urlpatterns += album_urls
 urlpatterns += auth_urls
-
+urlpatterns += user_urls
