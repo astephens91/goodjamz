@@ -5,7 +5,8 @@ from musicapp.albums import views
 
 urlpatterns = [ 
     path('album_upload/', views.album_artwork_view, name='image_upload'), 
-    path('success', views.success, name='success'), 
+    path('success', views.success, name='success'),
+    path('', views.album_list, name='homepage') 
 ] 
 
 if settings.DEBUG: 
