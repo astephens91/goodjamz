@@ -5,13 +5,20 @@
 
 <br><br>
 
-{% for records in albums %}
-    <div>
-        <h1><a href= '/album/{{ records.id }}'>{{ records.title }}</a> by {{ records.artist }}</h1>
-        <h2>Total Stars: {{ records.total_ratings }}</h2>
-        <h2>Average Stars: {{ records.average_rating }}</h2>
-        <img src="{{ records.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
-        <p>Uploaded by {{ records.uploaded_by }}</p>
-    </div>
 
-{% endfor %}
+
+    <form action="" method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for obj in filter.qs %}
+        <div>
+            <h1><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h1>
+            <h2>Total Stars: {{ obj.total_ratings }}</h2>
+            <h2>Average Stars: {{ obj.average_rating }}</h2>
+            <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+            <p>Uploaded by {{ obj.uploaded_by }}</p>
+        </div>
+    {% endfor %}
+
+

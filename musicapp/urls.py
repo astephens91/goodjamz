@@ -25,7 +25,7 @@ app_name = 'ratings'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index.as_view(), name='homepage'),
+    # path('', views.index.as_view(), name='homepage'),
     path('album/<int:id>/', views.albumview.as_view(), name='album_details'),
     path('userdetails/<int:id>/', views.userview.as_view(), name='user_details')
 ]
