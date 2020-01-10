@@ -4,6 +4,7 @@ from musicapp.albums.models import Album
 from musicapp.jamusers.models import CustomUser
 
 
+
 class index(View):
 
     def get(self, request):

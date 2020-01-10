@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from musicapp.albums import views
 
 urlpatterns = [ 
-    path('image_upload/', views.album_artwork_view, name='image_upload'), 
+    path('album_upload/', views.album_artwork_view, name='image_upload'), 
     path('success', views.success, name='success'), 
 ] 
 

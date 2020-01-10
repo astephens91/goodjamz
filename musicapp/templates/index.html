@@ -1,5 +1,4 @@
-<a href='/image_upload/'>Upload Album</a>
-<a href='/login/'>Login</a>
+<a href='/album_upload/'>Upload Album</a>
 <a href='/logout/'>Logout</a>
 <a href='/ratings/'></a>
 <h1>Goodjamz</h1>
@@ -8,10 +7,11 @@
 
 {% for records in albums %}
     <div>
-        <h1>{{ records.title }} by {{ records.artist }}</h1>
+        <h1><a href= '/album/{{ records.id }}'>{{ records.title }}</a> by {{ records.artist }}</h1>
         <h2>Total Stars: {{ records.total_ratings }}</h2>
         <h2>Average Stars: {{ records.average_rating }}</h2>
         <img src="{{ records.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+        <p>Uploaded by {{ records.uploaded_by }}</p>
     </div>
 
 {% endfor %}
