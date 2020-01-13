@@ -1,7 +1,9 @@
+
 <a href='/album_upload/'>Upload Album</a>
+
 <a href='/logout/'>Logout</a>
-<a href='/ratings/'></a>
-<h1>Goodjamz</h1>
+
+<h1><a href='/' style="text-decoration: none;">Goodjamz</a></h1>
 
 <br><br>
 
@@ -17,19 +19,18 @@
             <h2>Total Stars: {{ obj.total_ratings }}</h2>
             <h2>Average Stars: {{ obj.average_rating }}</h2>
             <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
-            <p>Uploaded by {{ obj.uploaded_by }}</p>
         </div>
-        
-    <p>How good is this album, son?</p>
-    <form action='/rating/{{ obj.id }}/' method=POST>
-        {% csrf_token %}
-        <input type='radio' name='rating' value='1'> 1 <br>
-        <input type='radio' name='rating' value='2'> 2 <br>
-        <input type='radio' name='rating' value='3'> 3 <br>
-        <input type='radio' name='rating' value='4'> 4 <br>
-        <input type='radio' name='rating' value='5'> 5
-        <input type='submit' value='VOTE'>
-    </form>
+        <br><br><br><br><br>
+        <p>How good is this album, son?</p>
+        <form action='/rating/{{ obj.id }}/' method=POST>
+            {% csrf_token %}
+            <input type='radio' name='rating' value='1'> 1 <br>
+            <input type='radio' name='rating' value='2'> 2 <br>
+            <input type='radio' name='rating' value='3'> 3 <br>
+            <input type='radio' name='rating' value='4'> 4 <br>
+            <input type='radio' name='rating' value='5'> 5
+            <input type='submit' value='VOTE'>
+        </form>
 
 </div>
 
