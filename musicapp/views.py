@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.views import View
-from musicapp.albums.models import Album
+from musicapp.albums.models import Album, Rating
 from musicapp.jamusers.models import CustomUser
 
 
@@ -56,3 +56,12 @@ def add_wishlist(request, id):
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
+
+def rating(request):
+
+    html = 'index.html'
+
+    all_ratings = Rating.objects.all()
+
+    return render(request, html, {'all_ratings': all_ratings})
