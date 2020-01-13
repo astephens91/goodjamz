@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
+
 from .managers import CustomUserManager
 
 # https://testdriven.io/blog/django-custom-user-model/
@@ -12,8 +13,6 @@ from .managers import CustomUserManager
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=True)
-    wishlist = models.ManyToManyField('self', related_name='wishlist+',
-                                      symmetrical=False, blank=True)
     date_joined = models.DateTimeField(default=timezone.now())
 
     USERNAME_FIELD = 'email'
