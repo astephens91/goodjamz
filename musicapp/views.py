@@ -1,8 +1,7 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.views import View
 from musicapp.albums.models import Album
 from musicapp.jamusers.models import CustomUser
-
 
 
 class index(View):
@@ -16,6 +15,8 @@ class index(View):
 
             albums = Album.objects.all()
 
+            
+
             return render(request, html, {'albums': albums})
 
 
@@ -23,8 +24,9 @@ class albumview(View):
     def get(self, request, id):
 
         html = "album_details.html"
-
+        
         album = Album.objects.filter(id=id)
+        print(request.user)
 
         return render(request, html, {'album': album})
 
@@ -36,5 +38,21 @@ class userview(View):
 
         user = CustomUser.objects.filter(id=id)
 
-        return render(request, html, {'user': user})
+        wishlist = Album.objects.filter(wishlist=request.user)
+
+        return render(request, html, {'user': user, 'wishlist': wishlist})
+
+
+def add_wishlist(request, id):
+    target_user = request.user
+    current_album = Album.objects.get(id=id)
+
+    if current_album.wishlist.filter(id=target_user.id).exists():
+        current_album.wishlist.remove(target_user)
+        print("Removed from Wishlist!")
+    else:
+        current_album.wishlist.add(target_user)
+        print("Added to Wishlist!")
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 

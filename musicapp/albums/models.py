@@ -31,6 +31,9 @@ class Album(models.Model):
         default=Genre.MISCELLANEOUS
     )
 
+    wishlist = models.ManyToManyField(CustomUser,
+                                      related_name='wishlist+',
+                                      symmetrical=False, blank=True)
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=50)
     artwork = models.ImageField(upload_to='images/', null=True, blank=True)
