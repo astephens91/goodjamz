@@ -20,12 +20,11 @@ from musicapp.authentication.urls import urlpatterns as auth_urls
 
 from musicapp import views
 
-app_name = 'ratings'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index.as_view(), name='homepage'),
-    # path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('ratings/', views.rating, name='rating')
 ]
 
 urlpatterns += album_urls
