@@ -15,8 +15,6 @@ class index(View):
 
             albums = Album.objects.all()
 
-            
-
             return render(request, html, {'albums': albums})
 
 
@@ -24,7 +22,7 @@ class albumview(View):
     def get(self, request, id):
 
         html = "album_details.html"
-        
+
         album = Album.objects.filter(id=id)
         print(request.user)
 
@@ -55,7 +53,6 @@ def add_wishlist(request, id):
         print("Added to Wishlist!")
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
-
 
 
 def rating(request):

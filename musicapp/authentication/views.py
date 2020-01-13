@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import login, logout, authenticate
 from musicapp.authentication.forms import LoginForm
-from django.contrib.auth.models import User
 
 
 def login_view(request):
@@ -18,7 +17,8 @@ def login_view(request):
             )
         if user:
             login(request, user)
-            return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
+            return HttpResponseRedirect(request.GET.get('next',
+                                                        reverse('homepage')))
 
     form = LoginForm()
 

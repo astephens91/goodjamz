@@ -19,8 +19,9 @@
             <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
             <p>Uploaded by {{ obj.uploaded_by }}</p>
         </div>
+        
     <p>How good is this album, son?</p>
-    <form action='/rating/{{ records.id }}/' method=POST>
+    <form action='/rating/{{ obj.id }}/' method=POST>
         {% csrf_token %}
         <input type='radio' name='rating' value='1'> 1 <br>
         <input type='radio' name='rating' value='2'> 2 <br>
