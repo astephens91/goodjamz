@@ -39,3 +39,26 @@ def rating_add_view(request, id):
             album=instance, user=request.user, stars=star_rating)
 
     return HttpResponseRedirect(reverse('homepage'))
+
+
+def editalbum(request, id):
+    html = "edit_form.html"
+    instance = Album.objects.get(id=id)
+
+    if request.method == "POST":
+        form = AlbumForm(request.POST, instance=instance)
+        form.save()
+
+        return HttpResponseRedirect(reverse('homepage'))
+
+    form = AlbumForm(instance=instance)
+
+    return render(request, html, {'form': form})
+
+
+def deletealbum(request, id):
+    album_to_delete = Album.objects.get(id=id)
+
+    album_to_delete.delete()
+
+    return HttpResponseRedirect(reverse('homepage'))
