@@ -38,7 +38,11 @@ class userview(View):
 
         wishlist = Album.objects.filter(wishlist=request.user)
 
-        return render(request, html, {'user': user, 'wishlist': wishlist})
+        albums_uploaded = Album.objects.filter(uploaded_by=request.user)
+
+        return render(request, html, {'user': user,
+                                      'wishlist': wishlist,
+                                      'albums_uploaded': albums_uploaded})
 
 
 def add_wishlist(request, id):

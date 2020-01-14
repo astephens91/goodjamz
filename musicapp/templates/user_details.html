@@ -17,3 +17,16 @@
         </div>
     {% endfor %}
 {% endifequal %}
+
+<br><br><br><br><hr>
+
+<h2>Albums You've Uploaded:</h2>
+
+{% for albums in albums_uploaded %}
+    <div>
+        <h1><a href= '/album/{{ obj.id }}'>{{ albums.title }}</a> by {{ albums.artist }}</h1>
+        <h2>Total Stars: {{ albums.total_ratings }}</h2>
+        <h2>Average Stars: {{ albums.average_rating }}</h2>
+        <img src="{{ albums.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+    </div>
+{% endfor %}

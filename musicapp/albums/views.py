@@ -11,7 +11,9 @@ def album_artwork_view(request):
         form = AlbumForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.uploaded_by = request.user
+            instance.save()
             return redirect('success')
 
     else:

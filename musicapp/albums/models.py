@@ -39,8 +39,9 @@ class Album(models.Model):
     artwork = models.ImageField(upload_to='images/', null=True, blank=True)
     post_date = models.DateTimeField(default=datetime.datetime.now())
     description = models.TextField(max_length=None, blank=False)
-    uploaded_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING,
-                                    related_name='uploaded_by+', null=True)
+    uploaded_by = models.ForeignKey(CustomUser,
+                                    on_delete=models.DO_NOTHING,
+                                    )
     total_ratings = computed_property.ComputedIntegerField(
         default=0,
         compute_from='get_total_ratings'
