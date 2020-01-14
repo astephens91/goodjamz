@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
             "sha256": "06e3eaba34a969076c86e710f27bad9d437c6af6692229c4910fb6ab275c0f01"
-=======
-            "sha256": "8046a891caae877986901250dc5d4897639a423354f12d40db12c9eab158092d"
->>>>>>> patterbranchratingsview
         },
         "pipfile-spec": 6,
         "requires": {
