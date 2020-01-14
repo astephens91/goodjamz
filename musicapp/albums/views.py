@@ -39,14 +39,3 @@ def rating_add_view(request, id):
             album=instance, user=request.user, stars=star_rating)
 
     return HttpResponseRedirect(reverse('homepage'))
-
-
-#             album = Album.objects.get(id=pk)
-#             stars = request.data['stars']
-#             # user = request.user['user']
-#             user = CustomUser.objects.get(id=1)
-
-#             try:
-#                 rating = Rating.objects.get(user=user.id, album=album.id)
-#                 rating.stars = stars
-#                 rating.save()
