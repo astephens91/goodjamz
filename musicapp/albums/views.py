@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponseRedirect, render, redirect, reverse
+from django.shortcuts import HttpResponseRedirect, HttpResponse, render, redirect, reverse
 # from django.contrib.auth.decorators import login_required
 from musicapp.albums.models import Album, Rating
 from musicapp.albums.forms import AlbumForm
@@ -14,15 +14,12 @@ def album_artwork_view(request):
             instance = form.save(commit=False)
             instance.uploaded_by = request.user
             instance.save()
-            return redirect('success')
+            return HttpResponseRedirect(reverse('homepage'))
 
     else:
         form = AlbumForm()
     return render(request, 'upload_form.html', {'form': form})
 
-
-def success(request):
-    return HttpResponseRedirect(reverse('homepage'))
 
 
 def album_list(request):
@@ -35,6 +32,9 @@ def rating_add_view(request, id):
     if request.method == "POST":
         instance = Album.objects.get(id=id)
         star_rating = int(request.POST.get('rating')[0])
+        targeted_rating = Rating.objects.filter(user=request.user).filter(album=instance)
+        if targeted_rating:
+            return HttpResponse("No ballot stuffin")
         add_rating = Rating.objects.create(
             album=instance, user=request.user, stars=star_rating)
 
