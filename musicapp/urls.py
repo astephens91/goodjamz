@@ -21,7 +21,6 @@ from musicapp.jamusers.urls import urlpatterns as user_urls
 
 from musicapp import views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('album/<int:id>/', views.albumview.as_view(), name='album_details'),
