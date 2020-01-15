@@ -34,7 +34,7 @@ def rating_add_view(request, id):
         star_rating = int(request.POST.get('rating')[0])
         targeted_rating = Rating.objects.filter(user=request.user).filter(album=instance)
         if targeted_rating:
-            return HttpResponse("No ballot stuffin")
+            return HttpResponseRedirect(reverse("ballotstuff"))
         add_rating = Rating.objects.create(
             album=instance, user=request.user, stars=star_rating)
 
@@ -46,7 +46,7 @@ def editalbum(request, id):
     instance = Album.objects.get(id=id)
 
     if request.method == "POST":
-        form = AlbumForm(request.POST, request.FILES, instance=instance)
+        form = AlbumForm(request.POST, request.FILES,  instance=instance)
         form.save()
 
         return HttpResponseRedirect(reverse('homepage'))
@@ -62,3 +62,12 @@ def deletealbum(request, id):
     album_to_delete.delete()
 
     return HttpResponseRedirect(reverse('homepage'))
+
+
+def ballotstuff(request):
+
+    html = "ballotstuff.html"
+
+    albums = Album.objects.all()
+
+    return render(request, html, {"albums": albums})

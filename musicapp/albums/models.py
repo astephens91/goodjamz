@@ -73,7 +73,7 @@ class Album(models.Model):
             return 0
 
     def __str__(self):
-        return f'{self.title} by {self.artist} uploaded  by'
+        return f'{self.title} by {self.artist} uploaded by {self.uploaded_by}'
 
 
 class Rating(models.Model):

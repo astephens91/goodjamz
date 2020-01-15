@@ -6,7 +6,7 @@
 {% block main %}
 
 <h1 class="display-3">GoodjamZ</h1>
-<p class="lead"> Check it out. Tell your Friends. Made with django. No Country Allowed. </p>
+<p class="lead"> Check it out. Tell your Friends. Made with django. </p>
 <hr class="my-4">  
 
 <br>
@@ -46,7 +46,7 @@
                 <a href= '/album/{{ obj.id }}' class="btn btn-primary">View Album </a>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Talk to me, son. Dope or worse than the Pope?</p>
+          <h5 class="card-title">Rate this album!</p>
             <form action='/rating/{{ obj.id }}/' method=POST>
                 {% csrf_token %}
                 <input type='radio' name='rating' value='5'> 5 - God-Tier <br>

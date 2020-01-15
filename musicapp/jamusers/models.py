@@ -7,8 +7,6 @@ from django.utils import timezone
 
 from .managers import CustomUserManager
 
-# https://testdriven.io/blog/django-custom-user-model/
-
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
