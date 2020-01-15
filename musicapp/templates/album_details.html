@@ -12,6 +12,12 @@
                 <a href="/edit/{{items.id}}/">EDIT</a>
                 <a href="/delete/{{items.id}}/">DELETE</a>
             {% endifequal %}
+            {% if user in items.wishlist.all %}
+                <a href="add/">Remove from wishlist!</a>
+            {% else %}
+                <a href="add/">Add to wishlist!</a>
+            {% endif %}
+            
         </div>
     </div>
 {% endfor %}
