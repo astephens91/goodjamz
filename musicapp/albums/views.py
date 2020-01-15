@@ -21,7 +21,6 @@ def album_artwork_view(request):
     return render(request, 'upload_form.html', {'form': form})
 
 
-
 def album_list(request):
     f = AlbumFilter(request.GET, queryset=Album.objects.all())
     return render(request, 'index.html', {'filter': f})
