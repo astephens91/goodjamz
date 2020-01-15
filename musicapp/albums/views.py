@@ -46,7 +46,7 @@ def editalbum(request, id):
     instance = Album.objects.get(id=id)
 
     if request.method == "POST":
-        form = AlbumForm(request.POST, instance=instance)
+        form = AlbumForm(request.POST, request.FILES, instance=instance)
         form.save()
 
         return HttpResponseRedirect(reverse('homepage'))

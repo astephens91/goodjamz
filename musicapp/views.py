@@ -24,7 +24,6 @@ class albumview(View):
         html = "album_details.html"
 
         album = Album.objects.filter(id=id)
-        print(request.user)
 
         return render(request, html, {'album': album})
 
