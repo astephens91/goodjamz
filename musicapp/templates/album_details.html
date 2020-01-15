@@ -1,3 +1,11 @@
+{% extends "sidenav.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block main %}
+
 {% for items in album %}
     <div style="margin-bottom: 20px;">
         <div>
@@ -21,3 +29,5 @@
         </div>
     </div>
 {% endfor %}
+
+{% endblock %}

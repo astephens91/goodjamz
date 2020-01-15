@@ -1,36 +1,59 @@
-{% for username in user%}
-    <h1>{{username.email}}</h1>
-{% endfor %}
+{% extends 'sidenav.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
-<h2>Wishlist: </h2>
 
-{% ifequal wishlist|length 0 %}
-    <h3>Nothing in your wishlist!</h3>
-{% else %}
-    {% for obj in wishlist %}
-        <div>
-            <h1><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h1>
-            <h2>Total Stars: {{ obj.total_ratings }}</h2>
-            <h2>Average Stars: {{ obj.average_rating }}</h2>
-            {% if obj.artwork|length > 0 %}
-                <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
-            {% endif %}
-            <p>Uploaded by {{ obj.uploaded_by }}</p>
-        </div>
-    {% endfor %}
-{% endifequal %}
+{% block main %}
+<br>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">
+        {% for username in customuser%}
+            {{username.email}}
+        {% endfor %}
+      </h4>
+
+   <h2>Your Wishlist: </h2>
+        <p class="card-text">
+        {% ifequal wishlist|length 0 %}
+        <h3>Nothing in your wishlist!</h3>
+    {% else %}
+        {% for obj in wishlist %}
+            <div>
+                <h3><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h3>
+                <h4>Total Stars: {{ obj.total_ratings }}</h4>
+                <h4>Average Stars: {{ obj.average_rating }}</h4>
+                {% if obj.artwork|length > 0 %}
+                    <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+                {% endif %}
+                <p>Uploaded by {{ obj.uploaded_by }}</p>
+            </div>
+        {% endfor %}
+    {% endifequal %}
+        </p>
+   
+    </div>
+  </div>
+
+
+
+
+
 
 <br><br><br><br><hr>
 
 <h2>Albums You've Uploaded:</h2>
 
-{% for albums in albums_uploaded %}
+{% for obj in albums_uploaded %}
     <div>
-        <h1><a href= '/album/{{ obj.id }}'>{{ albums.title }}</a> by {{ albums.artist }}</h1>
-        <h2>Total Stars: {{ albums.total_ratings }}</h2>
-        <h2>Average Stars: {{ albums.average_rating }}</h2>
+        <h3><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h3>
+        <h4>Total Stars: {{ obj.total_ratings }}</h4>
+        <h4>Average Stars: {{ obj.average_rating }}</h4>
         {% if obj.artwork|length > 0 %}
         <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
         {% endif %}
     </div>
 {% endfor %}
+
+{% endblock %}

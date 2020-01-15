@@ -1,14 +1,15 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title>Add an Album</title> 
-</head> 
-<body> 
+{% extends 'sidenav.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <h2>Add an Album</h2> 
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
-        {{ form.as_p }} 
-        <button type="submit">Submit</button> 
-    </form> 
-</body> 
-</html> 
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-success">Submit</button>
+{% endblock %}

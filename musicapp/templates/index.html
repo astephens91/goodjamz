@@ -1,45 +1,76 @@
+{% extends 'sidenav.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
-<a href='/album_upload/'>Upload Album</a>
+{% block main %}
 
-<a href='/userdetails/{{ request.user.id }}'>Your Profile</a>
+<h1 class="display-3">GoodjamZ</h1>
+<p class="lead"> Check it out. Tell your Friends. Made with django. No Country Allowed. </p>
+<hr class="my-4">  
 
-<a href='/logout/'>Logout</a>
-
-
-
-<h1><a href='/' style="text-decoration: none;">Goodjamz</a></h1>
-
-<br><br>
-
-
-
-    <form action="" method="get">
-        {{ filter.form.as_p }}
-        <input type="submit" />
-    </form>
-    {% for obj in filter.qs %}
-        <div>
-            <h1><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h1>
-            <h2>Total Stars: {{ obj.total_ratings }}</h2>
-            <h2>Average Stars: {{ obj.average_rating }}</h2>
-            {% if obj.artwork|length > 0 %}
-                <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
-            {% endif %}
-            <p>Uploaded By: {{obj.uploaded_by}}</p>
-
+<br>
+<br>
+    <h4>
+        <button type="button" class="btn btn-secondary btn-lg" style="width: 20rem;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Filter Albums by Genre
+    </h4>
+    <div class="collapse" id="collapseExample" style="width: 20rem;">
+    <div class="card card-body">
+        <form class="form-inline" action="" method="get">
+            <div class="form-group mb-2">
+            {{ filter.form.as_p }}
         </div>
-        <br><br><br><br><br>
-        <p>How good is this album, son?</p>
-        <form action='/rating/{{ obj.id }}/' method=POST>
-            {% csrf_token %}
-            <input type='radio' name='rating' value='1'> 1 <br>
-            <input type='radio' name='rating' value='2'> 2 <br>
-            <input type='radio' name='rating' value='3'> 3 <br>
-            <input type='radio' name='rating' value='4'> 4 <br>
-            <input type='radio' name='rating' value='5'> 5
-            <input type='submit' value='VOTE'>
+        <button type="submit" class="btn btn-secondary btn-sm" style="margin-left:10px">Submit</button>
         </form>
+    </div>
+    <br>
+  </div>
+
+    {% for obj in filter.qs %}
+    <div class="card" style="width: 20rem;">
+        <h3 class="card-header"><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h3>
+
+        {% if obj.artwork|length > 0 %}
+        <img src="{{ obj.artwork.url }}" class="card-img-top" alt="album-cover">
+        {% endif %}
+        <div class= 'card-body'>
+            <div  class="card-text">
+                {{ obj.description }}
+                <footer class="blockquote-footer"> Uploaded By: {{obj.uploaded_by}}</footer>
+                <br>
+                <div class="alert alert-primary" role="alert">
+                    Number of Ratings: {{ obj.total_ratings }}</div>
+                <div class="alert alert-primary" role="alert">
+                    Average Rating: {{ obj.average_rating }}/5</div>
+                <a href= '/album/{{ obj.id }}' class="btn btn-primary">View Album </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Talk to me, son. Dope or worse than the Pope?</p>
+            <form action='/rating/{{ obj.id }}/' method=POST>
+                {% csrf_token %}
+                <input type='radio' name='rating' value='5'> 5 - God-Tier <br>
+                <input type='radio' name='rating' value='4'> 4 <br>
+                <input type='radio' name='rating' value='3'> 3 - Meh <br>
+                <input type='radio' name='rating' value='2'> 2 <br>
+                <input type='radio' name='rating' value='1'> 1 - Just Trash<br>
+                <br>
+                <button class="btn btn-primary" type='submit'> VOTE </button>
+            </form>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <br>
+      {% endfor %}
+
+<br>
+<h3>Leave Some Feedback on Our Site</h3>
+<div>
+    <button type="button" class="btn btn-outline-success"><a href='/postsubmit'>Comment</a></button>
 
 </div>
+<br>
+</div>
 
-{% endfor %}
+{% endblock %}
