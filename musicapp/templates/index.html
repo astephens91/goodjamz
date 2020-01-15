@@ -6,7 +6,7 @@
 {% block main %}
 
 <h1 class="display-3">GoodjamZ</h1>
-<p class="lead"> Check it out. Tell your Friends. Made with django. </p>
+<p class="lead"> Share music. Discover music. </p>
 <hr class="my-4">  
 
 <br>
@@ -49,13 +49,13 @@
           <h5 class="card-title">Rate this album!</p>
             <form action='/rating/{{ obj.id }}/' method=POST>
                 {% csrf_token %}
-                <input type='radio' name='rating' value='5'> 5 - God-Tier <br>
+                <input type='radio' name='rating' value='5'> 5 <br>
                 <input type='radio' name='rating' value='4'> 4 <br>
-                <input type='radio' name='rating' value='3'> 3 - Meh <br>
+                <input type='radio' name='rating' value='3'> 3 <br>
                 <input type='radio' name='rating' value='2'> 2 <br>
-                <input type='radio' name='rating' value='1'> 1 - Just Trash<br>
+                <input type='radio' name='rating' value='1'> 1 <br>
                 <br>
-                <button class="btn btn-primary" type='submit'> VOTE </button>
+                <button class="btn btn-primary" type='submit'> RATE </button>
             </form>
           </h5>
         </div>
