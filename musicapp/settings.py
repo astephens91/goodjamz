@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'computed_property',
     'musicapp',
-    'django_filters'
+    'django_filters',
+    'bootstrap4'
 ]
 
 AUTH_USER_MODEL = 'musicapp.CustomUser'

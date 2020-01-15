@@ -1,26 +1,126 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
-<a href='/album_upload/'>Upload Album</a>
+<html>
+<head>
+    <style type="text/css">
+        
 
+		.sidenav {
+			height:100%;
+			width:150px;
+			position: fixed;
+			z-index:1;
+			top:0;
+			left:0;
+			background-color:#111;
+			overflow-x: :hidden;
+			padding-top:20px;
+		}
+ 
+		.sidenav a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			font-size:18px;
+			color: #818181;
+			display:block;
+		}
+ 
+		.sidenav a:hover{
+			color:#f1f1f1;
+		}	
+ 
+		.main{
+			margin-left:180px;
+			padding: 0px 10px;
+        }
+
+	</style>
+	<title>{% block title %}Hanging out and Jamming out{% endblock %}</title>
+</head>
+
+<body>
+	<div class="sidenav">
+
+        <a href="/">Home</a>
+        <a href='/album_upload/'>Upload Album</a>
+        <a href='/userdetails/{{ request.user.id }}'>Your Profile</a>
+        <a href='/logout/'>Logout</a>
+        
+	</div>
+ 
+	{% block content %}
+	{% endblock %}
+<div class="main">
+
+<!-- <a href='/album_upload/'>Upload Album</a>
 <a href='/userdetails/{{ request.user.id }}'>Your Profile</a>
+<a href='/logout/'>Logout</a> -->
 
-<a href='/logout/'>Logout</a>
-
-
-
-<h1><a href='/' style="text-decoration: none;">Goodjamz</a></h1>
+<h1 class="display-3">GoodjamZ</h1>
+<p class="lead"> Check it out. Tell your Friends. Made with django. No Country Allowed. </p>
+<hr class="my-4">  
 
 <br><br>
+    <h4>
+        <button type="button" class="btn btn-secondary btn-lg" style="width: 20rem;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Filter Albums by Genre
+    </h4>
+  <div class="collapse" id="collapseExample" style="width: 20rem;">
+    <div class="card card-body">
+        <form class="form-inline" action="" method="get">
+            <div class="form-group mb-2">
+            {{ filter.form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-secondary btn-sm" style="margin-left:10px">Submit</button>
+        </form>
+    </div>
+    <br>
+  </div>
 
-
-
-    <form action="" method="get">
+    <!-- <form class="form-inline" action="" method="get">
+        <div class="form-group mb-2">
         {{ filter.form.as_p }}
-        <input type="submit" />
-    </form>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-sm" style="margin-left:10px">Submit</button>
+    </form> -->
+    
     {% for obj in filter.qs %}
-        <div>
+    <div class="card" style="width: 20rem;">
+        <h3 class="card-header"><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h3>
+
+        {% if obj.artwork|length > 0 %}
+        <img src="{{ obj.artwork.url }}" class="card-img-top" alt="album-cover">
+        {% endif %}
+        <div class= 'card-body'>
+            <div  class="card-text">
+                {{ obj.description }}
+                <footer class="blockquote-footer"> Uploaded By: {{obj.uploaded_by}}</footer>
+                <br>
+                <a href= '/album/{{ obj.id }}' class="btn btn-primary">View Album </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Talk to me, son. Dope or worse than the Pope?</p>
+            <form action='/rating/{{ obj.id }}/' method=POST>
+                {% csrf_token %}
+                <input type='radio' name='rating' value='5'> 5 - God-Tier <br>
+                <input type='radio' name='rating' value='4'> 4 <br>
+                <input type='radio' name='rating' value='3'> 3 - Meh <br>
+                <input type='radio' name='rating' value='2'> 2 <br>
+                <input type='radio' name='rating' value='1'> 1 - Just Trash<br>
+                <br>
+                <button class="btn btn-primary" type='submit'> VOTE </button>
+            </form>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+
+        <!-- <div>
             <h1><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h1>
-            <h2>Total Stars: {{ obj.total_ratings }}</h2>
+            <h2>Total Votes: {{ obj.total_ratings }}</h2>
             <h2>Average Stars: {{ obj.average_rating }}</h2>
             {% if obj.artwork|length > 0 %}
                 <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
@@ -38,7 +138,31 @@
             <input type='radio' name='rating' value='5'> 5
             <input type='submit' value='VOTE'>
         </form>
+    {% endfor %} -->
+
+<br>
+<h3>Leave Some Feedback on Our Site</h3>
+<p>Total Number Of Comments</p>
+<div>
+    {% for post in posts %}
+    <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            {{ post }}
+              <p class="card-text">{{ post.body }}</p>
+              <p>{{ post.created_at}}</p>
+              <div class="alert alert-info" role="alert">Current Score: {{ post.score }}</div>
+              <div style="display: flex; justify-content: space-between">
+                    <a href="/upvote/{{post.id}}" class="btn btn-success">Upvote {{ post.upvotes}} </a>
+                    <a href="/downvote/{{post.id}}" class="btn btn-danger">Downvote {{ post.downvotes}} </a>
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+    </div>
+
+
+    <button type="button" class="btn btn-outline-success"><a href='/postsubmit'>Comment</a></button>
 
 </div>
-
-{% endfor %}
+<br>
+</body>

@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.views import View
 from musicapp.albums.models import Album, Rating
 from musicapp.jamusers.models import CustomUser
+from musicapp.comments.models import Post
 
 
 class index(View):
@@ -12,17 +13,16 @@ class index(View):
         else:
 
             html = "index.html"
-
             albums = Album.objects.all()
-
-            return render(request, html, {'albums': albums})
+            posts = Post.objects.all()
+ 
+            return render(request, html, {'albums': albums, 'posts':posts})
 
 
 class albumview(View):
     def get(self, request, id):
 
         html = "album_details.html"
-
         album = Album.objects.filter(id=id)
         print(request.user)
 
@@ -33,11 +33,8 @@ class userview(View):
     def get(self, request, id):
 
         html = "user_details.html"
-
         user = CustomUser.objects.filter(id=id)
-
         wishlist = Album.objects.filter(wishlist=request.user)
-
         albums_uploaded = Album.objects.filter(uploaded_by=request.user)
 
         return render(request, html, {'user': user,
@@ -62,7 +59,6 @@ def add_wishlist(request, id):
 def rating(request):
 
     html = 'index.html'
-
     all_ratings = Rating.objects.all()
 
     return render(request, html, {'all_ratings': all_ratings})
