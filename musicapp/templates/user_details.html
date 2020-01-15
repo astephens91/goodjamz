@@ -12,7 +12,9 @@
             <h1><a href= '/album/{{ obj.id }}'>{{ obj.title }}</a> by {{ obj.artist }}</h1>
             <h2>Total Stars: {{ obj.total_ratings }}</h2>
             <h2>Average Stars: {{ obj.average_rating }}</h2>
-            <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+            {% if obj.artwork|length > 0 %}
+                <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+            {% endif %}
             <p>Uploaded by {{ obj.uploaded_by }}</p>
         </div>
     {% endfor %}
@@ -27,6 +29,8 @@
         <h1><a href= '/album/{{ obj.id }}'>{{ albums.title }}</a> by {{ albums.artist }}</h1>
         <h2>Total Stars: {{ albums.total_ratings }}</h2>
         <h2>Average Stars: {{ albums.average_rating }}</h2>
-        <img src="{{ albums.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+        {% if obj.artwork|length > 0 %}
+        <img src="{{ obj.artwork.url }}" style="width: 100px; height: 100px; float: left; margin-right: 10px;" />
+        {% endif %}
     </div>
 {% endfor %}

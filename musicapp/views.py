@@ -62,3 +62,8 @@ def rating(request):
     all_ratings = Rating.objects.all()
 
     return render(request, html, {'all_ratings': all_ratings})
+
+
+
+    
+
