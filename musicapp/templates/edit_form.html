@@ -1,5 +1,15 @@
+{% extends 'sidenav.html' %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block main %}
+
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+
+{% endblock %}

@@ -1,3 +1,11 @@
+{% extends "sidenav.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block main %}
+
 {% for items in album %}
     <div style="margin-bottom: 20px;">
         <div>
@@ -9,10 +17,16 @@
             <p>Genre: {{items.genre_choice}}</p>
             <p>Uploaded by: {{ items.uploaded_by }}</p>
             {% ifequal items.uploaded_by request.user%}
-                <a href="/edit/{{items.id}}/">EDIT</a>
-                <a href="/delete/{{items.id}}/">DELETE</a>
-            {% endifequal %}
+                <a href="/edit/{{items.id}}/">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </a>
+                <a href="/delete/{{items.id}}/">
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </a>
+
+                {% endifequal %}
         </div>
     </div>
 {% endfor %}
 
+{% endblock %}

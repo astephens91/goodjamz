@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'computed_property',
     'musicapp',
     'django_filters',
-    'bootstrap4'
+    'bootstrap4',
+    'crispy_forms'
 ]
 
 AUTH_USER_MODEL = 'musicapp.CustomUser'

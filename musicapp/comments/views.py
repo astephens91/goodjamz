@@ -13,7 +13,7 @@ def post(request):
                 return redirect(redirecturl)
     else:
         form = PostForm()
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'edit_form.html', {'form': form})
 
 def upvote(request, element_id):
     post = Post.objects.get(id=element_id)

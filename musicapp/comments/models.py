@@ -22,7 +22,7 @@ class Post(models.Model):
 
 
 # class Comment(models.Model):
-#     post = models.ForeignKey(Album, related_name='comments', on_delete=models.CASCADE)
+#     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
 #     # user = models.CharField(max_length=200)
 #     email = models.EmailField()
 #     body = models.TextField()

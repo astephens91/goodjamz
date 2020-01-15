@@ -33,11 +33,11 @@ class userview(View):
     def get(self, request, id):
 
         html = "user_details.html"
-        user = CustomUser.objects.filter(id=id)
+        customuser = CustomUser.objects.filter(id=id)
         wishlist = Album.objects.filter(wishlist=request.user)
         albums_uploaded = Album.objects.filter(uploaded_by=request.user)
 
-        return render(request, html, {'user': user,
+        return render(request, html, {'customuser': customuser,
                                       'wishlist': wishlist,
                                       'albums_uploaded': albums_uploaded})
 

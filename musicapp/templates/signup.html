@@ -1,9 +1,23 @@
+{% extends 'sidenav.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
-{% block content %}
+{% block main %}
+
+{% load crispy_forms_tags %}
+
+<br>
 <h1>Sign up</h1>
+
 <form method="post">
+<div class="form-group">
+
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">Sign up</input>
+  {{ form|crispy }}
+  <button class="btn btn-primary" type="submit">Sign up</input>
+</div>
+
 </form>
 {% endblock %}
+
