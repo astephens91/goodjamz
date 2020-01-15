@@ -1,5 +1,16 @@
+{% include "bootstrap.html" %}
+
+<div class="sidenav">
+
+    <a href="/">Home</a>
+    <a href='/album_upload/'>Upload Album</a>
+    <a href='/userdetails/{{ request.user.id }}'>Your Profile</a>
+    <a href='/logout/'>Logout</a>
+    
+</div>
+
 {% for items in album %}
-    <div style="margin-bottom: 20px;">
+    <div class="main" style="margin-bottom: 20px;">
         <div>
             <h1>{{items.title}}</h1>
             {% if items.artwork|length > 0 %}
@@ -15,4 +26,5 @@
         </div>
     </div>
 {% endfor %}
+
 

@@ -1,14 +1,28 @@
+{% include "bootstrap.html" %}
+
+
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8"> 
     <title>Add an Album</title> 
 </head> 
-<body> 
+<body>
+    <div class="sidenav">
+
+        <a href="/">Home</a>
+        <a href='/album_upload/'>Upload Album</a>
+        <a href='/userdetails/{{ request.user.id }}'>Your Profile</a>
+        <a href='/logout/'>Logout</a>
+        
+	</div>
+    <div class="main">
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
         {{ form.as_p }} 
         <button type="submit">Submit</button> 
-    </form> 
+    </form>
+    </div>
+
 </body> 
 </html> 
